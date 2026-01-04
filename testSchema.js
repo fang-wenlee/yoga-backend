@@ -4,6 +4,16 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
+/*
+- It tests photo schema directly
+- It tests  MongoDB connection
+- It tests document creation
+- It tests default values
+- It avoids all Express complexity
+
+
+*/
+
 async function testSchema() {
 	try {
 		await mongoose.connect(process.env.MONGODB_URI);

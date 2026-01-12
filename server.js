@@ -1,9 +1,9 @@
 import express from "express";
 import cors from "cors";
-import uploadRoute from "./middleware/upload.js";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import authRoutes from "./routes/authRoutes.js";
+import photoRoutes from "./routes/photoRoutes.js";
 
 dotenv.config();
 
@@ -13,14 +13,10 @@ app.use(cors());
 app.use(express.json());
 
 // routes here
-app.use("/upload", uploadRoute);
-app.use("/api", photoRoutes);
-
+app.use("/api/photos", photoRoutes);
 app.use("/auth", authRoutes);
-app.get("/", (req, res) => res.send("Server is running"));
 
-// const PORT = process.env.PORT || 5000;
-// app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+app.get("/", (req, res) => res.send("Server is running"));
 
 const MONGODB_URI = process.env.MONGODB_URI;
 

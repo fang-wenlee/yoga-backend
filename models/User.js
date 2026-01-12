@@ -1,3 +1,8 @@
+/*
+   Defines the admin user schema 
+   Stores email, hashed password, roles, etc. 
+*/
+
 import mongoose from "mongoose";
 
 const UserSchema = new mongoose.Schema({

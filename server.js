@@ -3,6 +3,7 @@ import cors from "cors";
 import uploadRoute from "./routes/upload.js";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
+import authRoutes from "./routes/authRoutes.js";
 
 dotenv.config();
 
@@ -13,6 +14,7 @@ app.use(express.json());
 
 // routes here
 app.use("/upload", uploadRoute);
+app.use("/auth", authRoutes);
 app.get("/", (req, res) => res.send("Server is running"));
 
 // const PORT = process.env.PORT || 5000;

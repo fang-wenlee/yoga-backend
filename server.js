@@ -1,6 +1,6 @@
 import express from "express";
 import cors from "cors";
-import uploadRoute from "./routes/upload.js";
+import uploadRoute from "./middleware/upload.js";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import authRoutes from "./routes/authRoutes.js";
@@ -14,6 +14,8 @@ app.use(express.json());
 
 // routes here
 app.use("/upload", uploadRoute);
+app.use("/api", photoRoutes);
+
 app.use("/auth", authRoutes);
 app.get("/", (req, res) => res.send("Server is running"));
 

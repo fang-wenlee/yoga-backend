@@ -25,12 +25,25 @@ What each package does:
 
 Inside yogabackend/, create these files
 
-backend/
+yogaBack/
 server.js
-cloudinary.js
 routes/
-upload.js
+authRoutes.js
+photoRoutes.js
+controllers/
+authController.js
+photoController.js
+models/
+User.js
+Photo.js
+middleware/
+authMiddleware.js
+utils/
+cloudinary.js
+
+server.js
 .env
+.gitignore
 
 ### Step 4 — Add Cloudinary Credentials to .env
 
@@ -72,12 +85,12 @@ You should see Server running on port 5000
 1: Open your backend folder in VS Code
 Your folder structure should look like:
 
-backend/
 server.js
-routes/
+routes/ upload.js
 cloudinary.js
 package.json
 .env
+README.md
 
 2: Initialize Git inside the backend folder
 

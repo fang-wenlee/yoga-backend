@@ -11,7 +11,7 @@ import jwt from "jsonwebtoken";
 export const loginUser = async (req, res) => {
 	try {
 		const { email, password } = req.body;
-
+		console.log("EMAIL RECEIVED:", `"${email}"`);
 		// 1. Check user exists
 		const user = await User.findOne({ email });
 		if (!user) return res.status(400).json({ message: "Invalid credentials" });
@@ -34,6 +34,8 @@ export const loginUser = async (req, res) => {
 				name: user.name,
 			},
 		});
+
+		console.log("USER FOUND IN DB:", user);
 	} catch (err) {
 		res.status(500).json({ message: err.message });
 	}

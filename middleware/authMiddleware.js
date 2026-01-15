@@ -1,3 +1,13 @@
+/*
+- Read the JWT token from headers or cookies
+- Verify the token
+- Decode the user ID
+- Attach the user info to req.user
+- Call next() if valid
+- Block the request if invalid
+
+*/
+
 import jwt from "jsonwebtoken";
 import User from "../models/User.js";
 

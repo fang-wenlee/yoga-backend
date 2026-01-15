@@ -4,6 +4,9 @@
 - POST /api/auth/login
 - POST /api/auth/register (optional)
 
+simply a path + HTTP method that tells your server what to do when a request comes in. 
+route as the “entry point” for each feature of your API.
+
 
 */
 

@@ -1,27 +1,14 @@
 import express from "express";
 import multer from "multer";
-import cloudinary from "../utils/cloudinary.js";
+import requireAuth from "../middleware/authMiddleware.js";
+import { uploadPhoto } from "../controllers/photoController.js";
 
 const router = express.Router();
+
+// Multer memory storage for Cloudinary upload_stream
 const upload = multer({ storage: multer.memoryStorage() });
 
-router.post("/", upload.single("image"), async (req, res) => {
-	try {
-		const result = await new Promise((resolve, reject) => {
-			const stream = cloudinary.uploader.upload_stream(
-				{ folder: "yoga" },
-				(error, uploadResult) => {
-					if (error) reject(error);
-					else resolve(uploadResult);
-				}
-			);
-			stream.end(req.file.buffer);
-		});
-
-		res.json({ url: result.secure_url });
-	} catch (err) {
-		res.status(500).json({ error: err.message });
-	}
-});
+// POST /api/photos
+router.post("/", requireAuth, upload.single("image"), uploadPhoto);
 
 export default router;

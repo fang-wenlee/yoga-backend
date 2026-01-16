@@ -1,7 +1,11 @@
 /*
-   login
-   register (if new user allowed)
-   token generation
+   A controller:
+• 	Receives the request from the route
+• 	Extracts data from req.body, req.params , or req.file  
+• 	Runs the business logic
+• 	Talks to the database (via Mongoose)
+• 	Talks to Cloudinary (for uploads)
+• 	Returns a JSON response
 */
 
 import User from "../models/User.js";

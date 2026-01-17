@@ -25,10 +25,16 @@ export const loginUser = async (req, res) => {
 		if (!isMatch)
 			return res.status(400).json({ message: "Invalid credentials" });
 
-		// 3. Create JWT
-		const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
-			expiresIn: "7d",
-		});
+		// 3. Create JWT token and modify expiresIn from 7d to 1h
+		// const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
+		// 	expiresIn: "1h",
+		// });
+
+		const token = jwt.sign(
+			{ id: user._id },
+			process.env.JWT_SECRET,
+			{ expiresIn: "3m" }, // expires in 3 minutes
+		);
 
 		res.json({
 			token,

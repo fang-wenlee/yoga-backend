@@ -16,6 +16,7 @@ const requireAuth = async (req, res, next) => {
 		const authHeader = req.headers.authorization;
 
 		if (!authHeader || !authHeader.startsWith("Bearer ")) {
+			//A JWT expiring does not remove itself from localStorage, so the frontend must handle the redirect.
 			return res.status(401).json({ error: "No token provided" });
 		}
 

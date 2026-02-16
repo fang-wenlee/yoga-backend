@@ -2,10 +2,8 @@ import express from "express";
 import cors from "cors";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
+
 import authRoutes from "./routes/authRoutes.js";
-
-import cloudinary from "./utils/cloudinary.js";
-
 import photos from "./routes/photos.js"; // fetch + delete
 import photoRoutes from "./routes/photoRoutes.js"; // upload
 
@@ -16,11 +14,10 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// routes here
+// routes
+app.use("/auth", authRoutes);
 app.use("/api/photos", photos); // GET + DELETE
 app.use("/api/photos", photoRoutes); // POST upload
-
-app.use("/auth", authRoutes);
 
 app.get("/", (req, res) => res.send("Server is running"));
 

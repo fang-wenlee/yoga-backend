@@ -3,7 +3,8 @@ import cors from "cors";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import authRoutes from "./routes/authRoutes.js";
-import photoRoutes from "./routes/photoRoutes.js";
+import photoRoutes from "./routes/photos.js";
+import cloudinary from "./utils/cloudinary.js";
 
 dotenv.config();
 

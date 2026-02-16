@@ -15,7 +15,8 @@ import jwt from "jsonwebtoken";
 export const loginUser = async (req, res) => {
 	try {
 		const { email, password } = req.body;
-		console.log("EMAIL RECEIVED:", `"${email}"`);
+		//console.log("EMAIL RECEIVED:", `"${email}"`);
+
 		// 1. Check user exists
 		const user = await User.findOne({ email });
 		if (!user) return res.status(400).json({ message: "Invalid credentials" });
@@ -33,9 +34,11 @@ export const loginUser = async (req, res) => {
 		const token = jwt.sign(
 			{ id: user._id },
 			process.env.JWT_SECRET,
-			{ expiresIn: "3m" }, // expires in 3 minutes
+			{ expiresIn: "120m" },
+			/* expires in 120 minutes, no matter what the frontend says, the backend will reject it after 30 minutes
+			 This means that even if the frontend tries to use an old token, the backend will reject it after 120 minutes, enhancing security.
+			  Create a reusable InactivityLayer */
 		);
-
 		res.json({
 			token,
 			user: {
